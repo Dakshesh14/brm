@@ -22,8 +22,8 @@ from .permission import check_if_admin
 
 from .filters import SellsReportFilter, MoneyFilter
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def index(request):
     sells_qs = SellsReport.get_current_month.all().order_by('-date')[:3]
     expenses_income_qs = ExpensesIncomeModel.get_current_month.all()
@@ -47,8 +47,8 @@ def index(request):
         "expenses_income_qs":expenses_income_qs,
     })
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def add_sells(request):
     if request.method == 'GET':
         forms = SellsReportModelForm()
@@ -66,8 +66,8 @@ def add_sells(request):
                 "form":forms,
             })           
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def add_size(request,pk):
     qs = get_object_or_404(SellsReport,pk=pk)
 
@@ -121,8 +121,8 @@ def add_size(request,pk):
             "qs":qs,
         })
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def manage_payments(request,pk):
     qs = get_object_or_404(SellsReport,pk=pk)
 
@@ -161,8 +161,8 @@ def manage_payments(request,pk):
         })
 
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def add_income_expenses(request):
     if request.method == 'GET':
         form = ExpensesIncomeModelForm()
@@ -187,8 +187,8 @@ def add_income_expenses(request):
             })
 
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def list_sells(request):
     qs = SellsReport.objects.all().order_by("-date")
 
@@ -210,8 +210,8 @@ def list_sells(request):
         "qs_filter":sells_filter,
     })
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def sells_report_detail(request,pk):
     qs = get_object_or_404(SellsReport,pk=pk)
 
@@ -239,8 +239,8 @@ def sells_report_detail(request,pk):
             "form":form,
         })
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def list_money(request):
     qs = ExpensesIncomeModel.objects.all().order_by("-date")
 
@@ -262,8 +262,8 @@ def list_money(request):
         "qs_filter":qs_filter,
     })
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def money_detail(request,pk):
     qs = get_object_or_404(ExpensesIncomeModel, pk=pk)
 
@@ -292,8 +292,8 @@ def money_detail(request,pk):
             "form":form,
             })
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def get_income_data(request):
     qs = ExpensesIncomeModel.get_current_month.all()
     previous_qs = qs.first()
@@ -329,8 +329,8 @@ def get_income_data(request):
         "income":income,
     },status=200)
 
-@login_required(login_url="accounts:login")
-@check_if_admin
+# @login_required(login_url="accounts:login")
+# @check_if_admin
 def get_sells_data(request):
     qs = SellsReport.get_current_month.all()
     previous_qs = qs.first()
