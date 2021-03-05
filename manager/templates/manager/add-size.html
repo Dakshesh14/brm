@@ -1,0 +1,25 @@
+{% extends 'manager/admin-layout.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <form action="{% url 'manager:add-sizes' qs.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.management_form }}
+            <div class="row">
+                {% for field in form %}
+                <div class="col-sm">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+            </div>
+            <div class="buttons mt-3 float-md-end">
+                <input type="submit" value="Add and view" name="view" class="btn btn-primary">
+                <input type="submit" value="Save and add payment" name="add_payment" class="btn btn-secondary m-md-0 mt-2">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

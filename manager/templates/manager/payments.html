@@ -1,0 +1,21 @@
+{% extends 'manager/admin-layout.html' %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <form action="{% url 'manager:manage-payments' qs.pk %}" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {{ form.management_form }}
+                {% for field in form %}
+                <div class="mb-3">
+                    {{ field.label_tag }}
+                    {{ field }}
+                </div>
+                {% endfor %}
+            {{ form.media }}
+            <input type="submit" value="Save and view" name="view" class="btn btn-primary float-md-end">
+        </form>
+    </div>
+</div>
+{% endblock %}

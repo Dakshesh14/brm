@@ -1,0 +1,44 @@
+{% extends 'manager/admin-layout.html' %}
+
+{% block body %}
+<div class="container mt-5">
+
+    <div class="row mb-5 filter-form-container">
+        {% include 'extras/filter-form.html' %}
+    </div>
+
+    <div class="row">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#id</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Was Income</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for field in qs %}
+                <tr>
+                    <th scope="row">{{ field.id }}</th>
+                    <td>
+                        <a href="{% url 'manager:money-detail' field.pk %}" class="link-none">
+                            {{ field.description }}
+                        </a>
+                    </td>
+                    <td>
+                        {% if field.is_income %}
+                        <i class="fa fa-1x fa-check-circle text-success"></i>
+                        {% else %}
+                        <i class="fa fa-1x fa-times-circle text-danger"></i>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% include 'extras/pagination.html' %}
+
+{% endblock %}

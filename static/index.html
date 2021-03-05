@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./fontsawesome/css/all.css">
+
+    <script src="./js/bootstrap.bundle.js" defer></script>
+    <script src="./js/index.js" defer></script>
+    <script src="./js/chartjs.js" defer></script>
+    <script src="./js/charts.js" defer></script>
+
+    <title>Admin Dashboard</title>
+</head>
+
+<body>
+
+    <nav>
+        <header class="main-header">
+            <div class="container-fluid">
+                <div class="header-img-container">
+                    <img src="./images/logo.png" class="img-fluid" alt="">
+                </div>
+                <div class="header-links-container">
+                    <ul>
+                        <li>
+                            <div class="theme-toggle-btn">
+                                <button id="btn" type="button" class="toggler">
+                                    <i class="fas fa-1x fa-moon"></i>
+                                    <i class="fas fa-1x fa-lightbulb"></i>
+                                </button>
+                            </div>
+                        </li>
+                        <li class="header-profile-pic-container">
+                            <img src="./images/1.jpeg" class="img-fluid" alt="">
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </header>
+
+        <div class="container-fluid mt-3">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container-fluid align-items-center">
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" aria-current="page" href="#">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">Link</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    Dropdown
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">Action</a></li>
+                                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </nav>
+
+    <div class="main-contain">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-8 col-md-8 col-sm-12 mt-2">
+                    <div class="money-flow-chart-container">
+                        <h4>Revenue</h4>
+                        <p>Total Profit: $15000</p>
+                        <canvas id="money-flow-chart"></canvas>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-12 mt-2">
+                    <div class="contacts-container">
+                        <h4 class="text-center mb-3">Contacts</h4>
+                        <div class="contact">
+                            <h6 class="m-0">Tommy Shebly</h6>
+                            <p class="m-0 fw-lighter">1 year ago</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit....</p>
+                        </div>
+                        <div class="contact">
+                            <h6 class="m-0">Tommy Shebly</h6>
+                            <p class="m-0 fw-lighter">1 year ago</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit....</p>
+                        </div>
+                        <div class="contact">
+                            <h6 class="m-0">Tommy Shebly</h6>
+                            <p class="m-0 fw-lighter">1 year ago</p>
+                            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit....</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-4">
+                <div class="col-sm mt-2">
+                    <div class="sells-chart-container">
+                        <canvas id="sells-chart"></canvas>
+                    </div>
+                </div>
+                <div class="col-sm mt-2">
+                    <div class="summary">
+                        <h5>Summary(Daily)</h5>
+                        <p class="m-1">Total Sells: 250</p>
+                        <p class="m-1">Paid: 250</p>
+                        <p class="m-1">Balance: 250</p>
+                    </div>
+                </div>
+                <div class="col-sm mt-2">
+                    <div class="recent-sells">
+                        <h5>Recent Sells</h5>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Name</th>
+                                    <th scope="col">Quantity</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">Larry</th>
+                                    <td>550</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Jacob</th>
+                                    <td>450</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">Linda</th>
+                                    <td>600</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,104 @@
+{% extends 'manager/admin-layout.html' %}
+
+{% block body %}
+<div class="main-contain">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-12 mt-2">
+                <div class="money-flow-chart-container">
+                    <h4>Revenue(in thousand)</h4>
+                    <p>Running: 
+                        {% if profit < 0 %}
+                        <span class="text-danger">&#8377 {{ profit }} <i class="fa fa-arrow-alt-circle-down"></i></span>
+                        {% else %}
+                        <span class="text-success">&#8377 {{ profit }} <i class="fa fa-arrow-alt-circle-up"></i></span>
+                        {% endif %}
+                    </p>
+                    {% if expenses_income_qs %}
+                    <canvas id="money-flow-chart" data-url="{% url 'manager:get_income_expense' %}"></canvas>
+                    {% else %}
+                    <div class="d-flex flex-column justify-content-center align-items-center h-auto">
+                        <h4>No data entered this month!</h4>
+                        <a href="{% url 'manager:income-expense' %}" class="btn-custom btn-hollow">Add Income Expense</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-12 mt-2">
+                <div class="contacts-container">
+                    <h4 class="text-center mb-3">Contacts</h4>
+                    <div class="contact">
+                        <h6 class="m-0">Tommy Shebly</h6>
+                        <p class="m-0 fw-lighter">1 year ago</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit....</p>
+                    </div>
+                    <div class="contact">
+                        <h6 class="m-0">Tommy Shebly</h6>
+                        <p class="m-0 fw-lighter">1 year ago</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit....</p>
+                    </div>
+                    <div class="contact">
+                        <h6 class="m-0">Tommy Shebly</h6>
+                        <p class="m-0 fw-lighter">1 year ago</p>
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit....</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mt-4">
+            <div class="col-sm mt-2">
+                <div class="sells-chart-container">
+                    {% if sells_qs %}
+                    <canvas id="sells-chart" data-url="{% url 'manager:get_sells_data' %}"></canvas>
+                    {% else %}
+                    <div class="d-flex flex-column justify-content-center align-items-center h-auto">
+                        <h4>No data entered this month!</h4>
+                        <a href="{% url 'manager:add-sells' %}" class="btn-custom btn-hollow">Add Sells</a>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            <div class="col-sm mt-2">
+                <div class="summary">
+                    <h5 class="text-center">Summary(Daily)</h5>
+                    <div class="h-100 d-flex flex-column justify-content-center align-items-center">
+                        <p class="m-0">Profit:  &#8377 {{ profit }}</p>
+                        <p class="m-0">Income:  &#8377 {{ income }}</p>
+                        <p class="mb-2">Expense:  &#8377 {{ expense }}</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm mt-2">
+                <div class="recent-sells">
+                    <h5>Recent Sells</h5>
+                    {% if sells_qs %}
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Name</th>
+                                <th scope="col">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for x in sells_qs %}
+                            <tr>
+                                <th scope="row">
+                                    <a href="{% url 'manager:sells-report' x.id %}" class="link-none">{{ x.client }}</a>
+                                </th>
+                                <td>&#8377 {{ x.total_price }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% else %}
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <h5>No sells had been made this month!</h5>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

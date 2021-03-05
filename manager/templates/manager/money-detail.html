@@ -1,0 +1,31 @@
+{% extends 'manager/admin-layout.html' %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <form action="{% url 'manager:money-detail' qs.id %}" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {% if field.name == "date" %}
+                {{ field|attr:"type:date" }}
+                <small>Currently Saved: {{ qs.date }}</small>
+                {% else %}
+                {{ field }}
+                {% endif %}
+                <p class="text-danger">{{ field.errors|striptags }}</p>
+            </div>
+            {% endfor %}
+            <div class="buttons float-md-end mt-3">
+                <input type="submit" value="Save" name="save" class="btn btn-primary">
+                <input type="submit" value="Save and view" name="save_and_cont" class="btn btn-secondary">
+                <input type="submit" value="Save and another field" name="save_and_add_another" class="btn btn-secondary m-md-0 mt-2">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}

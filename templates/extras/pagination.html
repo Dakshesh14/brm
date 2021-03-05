@@ -1,0 +1,39 @@
+{% load template_helpers %}
+{% if qs.has_other_pages %}
+<nav class="my-5 d-flex justify-content-center">
+    <ul class="pagination">
+        <li class="page-item">
+            <a class="page-link" href="
+            {% if qs.has_previous %}
+            {% relative_url qs.previous_page_number 'page' request.GET.urlencode %}" aria-disabled="
+            {% else %}
+            #
+            {% endif %}
+            {% if qs.has_previous %}
+            false
+            {% else %}
+            true
+            {% endif %}
+            " aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        {% for x in qs.paginator.page_range %}
+        {% if x > qs.number|add:'-5' and x < qs.number|add:'5' %}
+        {% if qs.number == x %} <li
+            class="page-item active"><a class="page-link" href="{% relative_url x 'page' request.GET.urlencode %}">{{ x }}</a></li>
+        {% else %}
+        <li class="page-item"><a class="page-link" href="{% relative_url x 'page' request.GET.urlencode %}">{{ x }}</a></li>
+        {% endif %}
+        {% endif %}
+        {% endfor %}
+
+            <li class="page-item">
+                <a class="page-link" href="{% if qs.has_next_page_number %}{% relative_url qs.next_page_number 'page' request.GET.urlencode %}{% else %}#{% endif %}
+                " aria-label="Next" aria-disabled="{% if qs.has_next_page_number %}false{% else %}true{% endif %}">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+    </ul>
+</nav>
+{% endif %}

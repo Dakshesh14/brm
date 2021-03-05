@@ -1,0 +1,30 @@
+{% extends 'manager/admin-layout.html' %}
+
+{% load widget_tweaks %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row">
+        <form action="{% url 'manager:income-expense' %}" method="POST">
+            {% csrf_token %}
+            {{ form.non_field_errors }}
+            {% for field in form %}
+            <div class="mb-3">
+                {{ field.label_tag }}
+                {% if field.name == "date" %}
+                {{ field|attr:"type:date" }}
+                {% else %}
+                {{ field }}
+                {% endif %}
+                <p class="text-danger">{{ field.errors|striptags }}</p>
+            </div>
+            {% endfor %}
+            <div class="buttons float-md-end mt-3">
+                <input type="submit" class="btn btn-primary" value="Add" name="add">
+                <input type="submit" class="btn btn-secondary" value="Save and view" name="add_and_view">
+                <input type="submit" class="btn btn-secondary m-md-0 mt-2" value="Save and add another" name="add_another">
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
